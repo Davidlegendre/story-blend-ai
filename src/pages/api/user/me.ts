@@ -1,7 +1,7 @@
 import type { APIRoute } from "astro";
-import { StatusHttp, StoryBlendSchemas } from "../../../lib/enums";
-import { supabase } from "../../../lib/supabase";
-import { getResponse, getSession } from "../../../lib/helpers/helpers";
+import { StatusHttp, StoryBlendSchemas } from "@/lib/enums";
+import { supabase } from "@/lib/supabase";
+import { getResponse, getSession } from "@/lib/helpers";
 
 export const GET: APIRoute = async () => {
   try {
