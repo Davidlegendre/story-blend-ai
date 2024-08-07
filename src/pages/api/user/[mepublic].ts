@@ -1,15 +1,14 @@
 import type { APIRoute } from "astro";
 import { StatusHttp, StoryBlendSchemas } from "../../../lib/enums";
 import { supabase } from "../../../lib/supabase";
-import { getResponse, getSession } from "../../../lib/helpers/helpers";
-import { type UserModel } from "../../../interfaces/user.interface";
-
+import { getOnlyParamsClass, getResponse } from "../../../lib/helpers/helpers";
+import { UserPublic } from "../../../lib/StoryBlendModels/user.public.dto";
 export const GET: APIRoute = async ({params}) => {
   try {
     const {mepublic} = params
     const { data, error } = await supabase
       .from(StoryBlendSchemas.User)
-      .select("idUser,photoUser,likes")
+      .select(getOnlyParamsClass(UserPublic))
       .eq("idUser", mepublic);
       
     return error

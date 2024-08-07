@@ -1,5 +1,4 @@
-export interface IUserModel {
-    id: string
+export interface IUserPublic {
     idUser: string
     photoUser: string
     fechaNacimiento: any
@@ -8,12 +7,7 @@ export interface IUserModel {
     likes: number
     promedioLikesHistorias: number
     followers: number
-    isDelete: boolean
-    apiKeyAI: any
-    idTypeAI: any
-    fechaCreatedUser: string
     fechaUltimoAcceso: string
     fullName: string
     email: string
   }
-  

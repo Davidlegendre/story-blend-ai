@@ -1,5 +1,7 @@
-export interface IUserModel {
-    id: string
+import type { IUserPublic } from "../../interfaces/user.public";
+
+export class UserPublic implements IUserPublic
+{
     idUser: string
     photoUser: string
     fechaNacimiento: any
@@ -8,12 +10,7 @@ export interface IUserModel {
     likes: number
     promedioLikesHistorias: number
     followers: number
-    isDelete: boolean
-    apiKeyAI: any
-    idTypeAI: any
-    fechaCreatedUser: string
     fechaUltimoAcceso: string
     fullName: string
     email: string
-  }
-  
+}
