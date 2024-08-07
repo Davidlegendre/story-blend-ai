@@ -1,0 +1,19 @@
+---
+import Layout from "../components/layouts/layout.astro";
+
+const { cookies, redirect } = Astro;
+
+const accessToken = cookies.get("sb-access-token");
+const refreshToken = cookies.get("sb-refresh-token");
+
+if (accessToken && refreshToken) {
+  return redirect("/");
+}
+---
+
+<Layout title="Story Blend AI - Login">
+  <h1>Sign in</h1>
+  <form action="/api/auth/login" method="post">
+    <button value="google" name="provider" type="submit">Sign in with Google</button>
+  </form>
+</Layout>
