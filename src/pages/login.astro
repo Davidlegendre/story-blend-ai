@@ -5,7 +5,7 @@ import { getSession } from "@/lib/helpers";
 const session = await getSession()
 
 if (session) {
-  return redirect("/");
+  return Astro.redirect("/");
 }
 ---
 

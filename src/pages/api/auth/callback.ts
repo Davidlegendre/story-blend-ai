@@ -20,7 +20,7 @@ export const GET: APIRoute = async ({ url, cookies, redirect }) => {
   }
 
   const { access_token, refresh_token, user } = data.session;
-  await PostFetch(`${url.origin}/api/user/createUser`, user);
+ 
   
   cookies.set("sb-access-token", access_token, {
     path: "/",
@@ -28,5 +28,6 @@ export const GET: APIRoute = async ({ url, cookies, redirect }) => {
   cookies.set("sb-refresh-token", refresh_token, {
     path: "/",
   });
+  await PostFetch(`${url.origin}/api/user/createUser`, user);
   return redirect("/");
 };
