@@ -20,7 +20,9 @@ export const PostFetch = async (url: string, body: any) => {
       },
       body: JSON.stringify(body),
     });
-    console.log(`[${data.status}] ${url} ${data.statusText} ${await data.text()}`)
+
+    const json = await data.json()
+    console.log(`[${data.status}] ${url} ${data.statusText} ${JSON.stringify(json)}`)
     return data.ok;
   } catch (error) {
     console.error(error);
