@@ -7,11 +7,6 @@ import { getResponse, getSession } from "@/lib/helpers";
 
 export const POST: APIRoute = async ({ request }) => {
   try {
-    const session = await getSession()
-    if(!session) return getResponse({
-      server: StatusHttp.Unauthorized,
-      message: "No tiene Autorizacion",
-    });
     const data: User = await request.json();
     //averiguo si existe un usuario ya con ese id
     const { data: res } = await supabase
