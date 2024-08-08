@@ -4,7 +4,7 @@ import type { Provider } from "@supabase/supabase-js";
 import { StatusHttp } from "@/lib/enums";
 import { getResponse } from "@/lib/helpers";
 
-export const POST: APIRoute = async ({ request, redirect }) => {
+export const POST: APIRoute = async ({ request, redirect, url }) => {
   const formData = await request.formData();
   const provider = formData.get("provider")?.toString();
 
@@ -13,7 +13,7 @@ export const POST: APIRoute = async ({ request, redirect }) => {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: provider as Provider,
       options: {
-        redirectTo: "http://localhost:4321/api/auth/callback"
+        redirectTo: url.origin + "/api/auth/callback"
       },
     });
 
