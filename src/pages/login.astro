@@ -1,7 +1,7 @@
 ---
-import Layout from "../components/Layout.astro";
-import LoginForm from "../components/LoginForm.astro";
-import { getSession } from "../lib/helpers";
+import Layout from "@/components/Layout.astro";
+import LoginForm from "@/components/LoginForm.astro";
+import { getSession } from "@/lib/helpers";
 const session = await getSession()
 
 if (session) {
