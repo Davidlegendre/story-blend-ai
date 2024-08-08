@@ -23,7 +23,7 @@ export const POST: APIRoute = async ({ request }) => {
     //si hay un usuario acabo aqui
 
     if (res && res.length > 0) {
-      const result = await supabase.from(StoryBlendSchemas.User).update({
+      await supabase.from(StoryBlendSchemas.User).update({
         fullName: data.user_metadata.full_name,
         photoUser: data.user_metadata.avatar_url,
         email: data.user_metadata.email,
