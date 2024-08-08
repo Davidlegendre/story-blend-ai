@@ -1,5 +1,5 @@
-import { ResponseModel } from "@/lib/models/Response.model";
-import { supabase } from "@/lib/supabase";
+import { ResponseModel } from "../lib/models/Response.model";
+import { supabase } from "../lib/supabase";
 
 export const getResponse = (ResponseModel: ResponseModel<any>) => {
   return new Response(JSON.stringify(ResponseModel), {

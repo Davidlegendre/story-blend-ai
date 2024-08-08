@@ -1,8 +1,8 @@
 import type { APIRoute } from "astro";
-import { supabase } from "@/lib/supabase";
-import { PostFetch } from "@/lib/Helpers/fetchHelper";
-import { StatusHttp } from "@/lib/enums";
-import { getResponse } from "@/lib/helpers";
+import { supabase } from "../../../lib/supabase";
+import { PostFetch } from "../../../lib/Helpers/fetchHelper";
+import { StatusHttp } from "../../../lib/enums";
+import { getResponse } from "../../../lib/helpers";
 
 export const GET: APIRoute = async ({ url, cookies, redirect }) => {
   const authCode = url.searchParams.get("code");

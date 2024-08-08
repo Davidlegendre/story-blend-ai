@@ -1,8 +1,8 @@
 ---
 import CardForm from "./CardForm.astro";
-import { GetFetch } from "@/lib/Helpers/fetchHelper";
-import type { IUserModel } from "@/interfaces/user.interface";
-import type { ResponseModel } from "@/lib/models/Response.model";
+import { GetFetch } from "../lib/Helpers/fetchHelper";
+import type { IUserModel } from "../interfaces/user.interface";
+import type { ResponseModel } from "../lib/models/Response.model";
 import User from "./User.astro";
 const session: ResponseModel<IUserModel> = await GetFetch(
   `${Astro.url.origin}/api/user/me`

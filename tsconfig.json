@@ -1,9 +1,3 @@
 {
-  "extends": "astro/tsconfigs/base",
-  "compilerOptions": {
-    "baseUrl": ".", // Base directory to resolve non-relative module names
-    "paths": {
-      "@/*": ["src/*"] // Alias @ para el directorio src
-    }
-  }
+  "extends": "astro/tsconfigs/base"
 }
