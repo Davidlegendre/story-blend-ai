@@ -14,10 +14,11 @@ export const GET: APIRoute = async () => {
     const { data, error } = await supabase
       .from(StoryBlendSchemas.User)
       .select("*")
-      .eq("idUser", user.user.id);
-    return error
-      ? getResponse({ server: StatusHttp.BadRequest })
-      : getResponse({ server: StatusHttp.OK, data: data.length > 0 ? data[0] : data });
+      .eq("idUser", user.user.id)
+      .single();
+    if (error) return getResponse({ server: StatusHttp.BadRequest });
+
+    return getResponse({ server: StatusHttp.OK, data: data });
   } catch (error) {
     console.error(error);
     return getResponse({ server: StatusHttp.BadRequest });

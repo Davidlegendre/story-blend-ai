@@ -10,13 +10,12 @@ export const GET: APIRoute = async ({ url, cookies, redirect }) => {
   if (!authCode) {
     return getResponse({ server: StatusHttp.BadRequest, message: "No Code Provider" });
   }
-  console.log("authcode paso")
   const { data, error } = await supabase.auth.exchangeCodeForSession(authCode);
 
   if (error) {
     return getResponse({server:StatusHttp.InternalServerException})
   }
-  console.log("session paso")
+ 
   const { access_token, refresh_token, user } = data.session;
  
   
@@ -26,7 +25,7 @@ export const GET: APIRoute = async ({ url, cookies, redirect }) => {
   await cookies.set("sb-refresh-token", refresh_token, {
     path: "/",
   });
-  console.log("cookie paso")
+ 
   await PostFetch(`${url.origin}/api/user/createUser`, user);
   return redirect("/");
 };

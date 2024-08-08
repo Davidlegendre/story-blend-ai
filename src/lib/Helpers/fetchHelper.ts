@@ -2,7 +2,7 @@ export const GetFetch = async (url: string) => {
   try {
     const data = await fetch(url);
     const json = await data.json();
-    console.log(`[${data.status}] ${url} ${data.statusText} ${JSON.stringify(json)}`)
+    console.log(`[${data.status}] ${url.split("/").pop()} ${data.statusText}`)
     return json;
   } catch (error) {
     console.error(error);
@@ -20,9 +20,7 @@ export const PostFetch = async (url: string, body: any) => {
       },
       body: JSON.stringify(body),
     });
-
-    const json = await data.json()
-    console.log(`[${data.status}] ${url} ${data.statusText} ${JSON.stringify(json)}`)
+    console.log(`[${data.status}] ${url.split("/").pop()} ${data.statusText}`)
     return data.ok;
   } catch (error) {
     console.error(error);

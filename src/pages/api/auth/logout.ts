@@ -6,6 +6,6 @@ import { supabase } from "@/lib/supabase";
 export const GET: APIRoute = async ({ cookies, redirect }) => {
   cookies.delete("sb-access-token", { path: "/" });
   cookies.delete("sb-refresh-token", { path: "/" });
-  supabase.auth.signOut()
+  await supabase.auth.signOut()
   return redirect("/");
 };
