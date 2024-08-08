@@ -14,9 +14,7 @@ export const GET: APIRoute = async ({ url, cookies, redirect }) => {
   const { data, error } = await supabase.auth.exchangeCodeForSession(authCode);
 
   if (error) {
-    return new Response(error.message, {
-      status: StatusHttp.InternalServerException.status,
-    });
+    return getResponse({server:StatusHttp.InternalServerException})
   }
 
   const { access_token, refresh_token, user } = data.session;
