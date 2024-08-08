@@ -1,4 +1,4 @@
-import type { IUserPublic } from "../../interfaces/user.public";
+import type { IUserPublic } from "../interfaces/user.public";
 
 export class UserPublic implements IUserPublic
 {

@@ -1,9 +1,9 @@
 import type { APIRoute } from "astro";
-import { supabase } from "../../../lib/supabase";
-import { StatusHttp, StoryBlendSchemas } from "../../../lib/enums";
+import { supabase } from "@/lib/supabase";
+import { StatusHttp, StoryBlendSchemas } from "@/lib/enums";
 import type { User } from "@supabase/supabase-js";
-import { UserCreateDto } from "../../../lib/StoryBlendModels/user.create.dto";
-import { getResponse, getSession } from "../../../lib/helpers";
+import { UserCreateDto } from "@/lib/StoryBlendModels/user.create.dto";
+import { getResponse, getSession } from "@/lib/helpers";
 
 export const POST: APIRoute = async ({ request }) => {
   try {
