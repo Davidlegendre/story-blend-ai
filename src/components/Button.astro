@@ -1,0 +1,48 @@
+---
+interface Props {
+  imgsrc?: {
+    alt: string,
+    src: string
+  };
+  text: string;
+  type?: "submit" | "reset" | "button"
+  name?: string
+  value?:string
+  vertical?: boolean
+  IOSStyle?: boolean
+  depth?: 4 | 8 | 16 | 64
+}
+
+const { imgsrc, text, type, value, name, vertical = false, IOSStyle = false, depth = 4} = Astro.props;
+---
+<button value={value} name={name} type={type} class=`${vertical? 'vertical': ''} ${IOSStyle ? 'ios': ''}  ms-depth-${depth}`>
+    {
+        imgsrc ? <>
+        <img src={imgsrc.src} alt={imgsrc.alt}>
+        </>:<></>
+    }    
+    <p>{text}</p>
+</button>
+
+<style>
+  .vertical{
+    flex-direction: column;
+    padding: 10px 10px;
+    padding-bottom: 0px;    
+    gap: 5px;
+  }
+  .vertical img {
+    height: 80px;
+    width: 80px;
+  }
+
+  .ios{
+background-color: rgba(0,0,0,0.1);
+backdrop-filter: blur(13px); 
+color: white;
+  }
+  .ios:hover{
+    background-color: rgba(0,0,0,0.2);
+    transition: cubic-bezier(0.785, 0.135, 0.15, 0.86) .2s;
+  }
+</style>

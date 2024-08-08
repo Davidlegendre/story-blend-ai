@@ -1,19 +1,38 @@
 ---
-interface Props{
-    title?: string | 'Story Blend AI',
-    icon?: string | "/favicon.svg"  
+import '@/cssComponent/inputs.css'
+import '@/cssComponent/texto.css'
+import '@/cssComponent/shadows.css'
+import '@/cssComponent/anchors.css'
+import Navigation from './Navigation.astro'
+import { boolean } from 'astro/zod'
+interface Props {
+  title?: string;
+  icon?: string;
+  hideNav?: boolean;
 }
-const {title, icon} = Astro.props
+const { title = "Story Blend AI", icon = "/logoStoryBlend.png",
+  hideNav = false
+} = Astro.props;
+
 ---
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href={icon} />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot></slot>
-	</body>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href={icon} />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    {hideNav ? '' : <Navigation></Navigation>}
+    <slot />
+  </body>
 </html>
+
+<style is:global>
+body{
+  margin: 0px;
+  padding: 0px;
+}
+</style>

@@ -1,24 +1,6 @@
 ---
-import Layout from "@/components/layouts/layout.astro";
-import type { IUserPublic } from "@/interfaces/user.public";
-import { GetFetch, PostFetch } from "@/lib/Helpers/fetchHelper";
-import type { ResponseModel } from "@/lib/models/Response.model";
-import { supabase } from "@/lib/supabase";
-const supaSession = await supabase.auth.getSession();
-const session = supaSession.data.session;
-const userdata: ResponseModel<IUserPublic> = await GetFetch(`${Astro.url.origin}/api/user/e08c4c01-1017-40e2-ba7e-92a9b1faafd5`);
+import Layout from "@/components/Layout.astro";
 ---
-
 <Layout>
-  <p>{JSON.stringify(userdata.data)}</p>
-  {
-    session ? (
-      <div>
-        
-        <a href="/api/auth/logout">logout</a>
-      </div>
-    ) : (
-      <a href="/login">login</a>
-    )
-  }
+  
 </Layout>

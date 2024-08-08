@@ -1,0 +1,33 @@
+---
+interface Props {
+  imgsrc?: {
+    alt: string,
+    src: string
+  };
+  text: string;
+  IOSStyle?: boolean
+  href: string
+}
+
+const { imgsrc, text, IOSStyle = false, href = "#"} = Astro.props;
+---
+<a href={href} class=`${IOSStyle ? 'ios': ''}`>
+    {
+        imgsrc ? <>
+        <img src={imgsrc.src} alt={imgsrc.alt}>
+        </>:<></>
+    }    
+    {text}
+</a>
+
+<style>
+  .ios{
+background-color: rgba(0,0,0,0.1);
+backdrop-filter: blur(13px); 
+color: white;
+  }
+  .ios:hover{
+    background-color: rgba(0,0,0,0.2);
+    transition: cubic-bezier(0.785, 0.135, 0.15, 0.86) .2s;
+  }
+</style>

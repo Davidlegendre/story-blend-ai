@@ -1,0 +1,71 @@
+---
+import { fade } from "astro:transitions";
+import Button from "./Button.astro";
+import List from "./List.astro";
+const imgGoogle = {
+  src: "https://img.icons8.com/?size=100&id=V5cGWnc9R4xj&format=png&color=000000",
+  alt: "google logo",
+};
+---
+
+<div class="content">
+  <div class="titleContent">
+    <img
+      src="https://img.icons8.com/?size=35&id=26218&format=png&color=000000"
+      alt="login"
+    />
+    <p>Starts with</p>
+  </div>
+  <form action="/api/auth/login" method="post">
+    <List>
+      <Button
+        depth={8}
+        vertical={false}
+        text="Login With Google"
+        value="google"
+        name="provider"
+        type="submit"
+        imgsrc={imgGoogle}
+      />
+    </List>
+  </form>
+</div>
+<div class="footer">
+  <img class="logo" src="/logoStoryBlend.png" alt="story blend" />
+  <div>
+    <p>Story Blend AI</p>
+    <p>Welcome</p>
+  </div>
+</div>
+
+<style>
+  .titleContent {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+  }
+  .logo {
+    height: 50px;
+  }
+  .content p {
+    font-size: 1.5rem;
+    color: black;
+  }
+  .footer {
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  .footer p {
+    font-size: 0.9rem;
+    margin: 0px;
+  }
+  .footer p:nth-child(2) {
+    font-size: 1.4rem;
+  }
+</style>

@@ -1,19 +1,27 @@
 ---
-import Layout from "../components/layouts/layout.astro";
+import Layout from "@/components/Layout.astro";
+import LoginForm from "@/components/LoginForm.astro";
+import { getSession } from "@/lib/helpers";
+const { redirect } = Astro;
 
-const { cookies, redirect } = Astro;
+const session = await getSession()
 
-const accessToken = cookies.get("sb-access-token");
-const refreshToken = cookies.get("sb-refresh-token");
-
-if (accessToken && refreshToken) {
+if (session) {
   return redirect("/");
 }
 ---
 
-<Layout title="Story Blend AI - Login">
-  <h1>Sign in</h1>
-  <form action="/api/auth/login" method="post">
-    <button value="google" name="provider" type="submit">Sign in with Google</button>
-  </form>
+<Layout hideNav={true} title="Story Blend AI - Login">
+  <div class="content">    
+    <LoginForm></LoginForm>
+  </div>
 </Layout>
+
+<style>
+  .content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;    
+  }
+</style>

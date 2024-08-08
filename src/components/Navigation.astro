@@ -1,0 +1,46 @@
+---
+import CardForm from "./CardForm.astro";
+import { GetFetch } from "@/lib/Helpers/fetchHelper";
+import type { IUserModel } from "@/interfaces/user.interface";
+import type { ResponseModel } from "@/lib/models/Response.model";
+import User from "./User.astro";
+const session: ResponseModel<IUserModel> = await GetFetch(
+  `${Astro.url.origin}/api/user/me`
+);
+console.log(session);
+---
+
+<div class="content">
+  <CardForm depth={16}>
+    <div class="contentNav">
+      <User user={session.data} />
+      <div class="linksNav">
+        <a href="#">Historias</a>
+        <a href="#">Novedades</a>
+        <a href="#">Crear</a>
+        <a href="#">Mis Historias</a>
+      </div>
+    </div>
+  </CardForm>
+</div>
+
+<style>
+  .content {
+    left: 10px;
+    top: 10px;
+    margin-top: 10px;
+    right: 10px;
+    position: sticky;
+    display: flex;
+    justify-content: center;
+  }
+  .linksNav {
+    display: flex;
+    gap: 10px;
+  }
+  .contentNav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+</style>
