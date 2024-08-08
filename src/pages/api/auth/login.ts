@@ -10,8 +10,13 @@ export const POST: APIRoute = async ({ request, redirect, url }) => {
 
   const validProviders = ["google"];
   if (provider && validProviders.includes(provider)) {
+    const origin = url.origin
+    console.log(origin)
     const { data, error } = await supabase.auth.signInWithOAuth({
-      provider: provider as Provider
+      provider: provider as Provider,
+      options: {
+        redirectTo: origin + "/api/auth/callback"
+      },
     });
 
     if (error) {
