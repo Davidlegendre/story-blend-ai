@@ -4,7 +4,7 @@ import type { Provider } from "@supabase/supabase-js";
 import { StatusHttp } from "../../../lib/enums";
 import { getResponse } from "../../../lib/helpers";
 
-export const POST: APIRoute = async ({ request, cookies, redirect }) => {
+export const POST: APIRoute = async ({ request, redirect }) => {
   const formData = await request.formData();
   const provider = formData.get("provider")?.toString();
 

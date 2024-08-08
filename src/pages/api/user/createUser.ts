@@ -5,7 +5,7 @@ import type { User } from "@supabase/supabase-js";
 import { UserCreateDto } from "../../../lib/StoryBlendModels/user.create.dto";
 import { getResponse, getSession } from "../../../lib/helpers";
 
-export const POST: APIRoute = async ({ request, cookies, redirect }) => {
+export const POST: APIRoute = async ({ request }) => {
   try {
     const session = await getSession()
     if(!session) return getResponse({
@@ -14,7 +14,7 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
     });
     const data: User = await request.json();
     //averiguo si existe un usuario ya con ese id
-    const { data: res, error: err } = await supabase
+    const { data: res } = await supabase
       .from(StoryBlendSchemas.User)
       .select("idUser")
       .eq("idUser", data.id);
