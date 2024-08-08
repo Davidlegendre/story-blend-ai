@@ -13,6 +13,7 @@ const { user } = Astro.props;
       <>
         <img src={user.photoUser} alt={user.fullName} />
         <div class="circle" />
+        <a href="/api/auth/logout">logout</a>
       </>
     ) : (
       <Link href="/login" text="Login" />

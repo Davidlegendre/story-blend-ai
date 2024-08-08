@@ -5,7 +5,7 @@ import type { User } from "@supabase/supabase-js";
 import { UserCreateDto } from "@/lib/StoryBlendModels/user.create.dto";
 import { getResponse, getSession } from "@/lib/helpers";
 
-export const POST: APIRoute = async ({ request }) => {
+export const POST: APIRoute = async ({ request, cookies }) => {
   try {
     const session = await getSession()
     if(!session) return getResponse({
@@ -17,23 +17,13 @@ export const POST: APIRoute = async ({ request }) => {
     const { data: res } = await supabase
       .from(StoryBlendSchemas.User)
       .select("idUser")
-      .eq("idUser", data.id);
+      .eq("idUser", data.id).single();
 
-    console.error(data);
     //si hay un usuario acabo aqui
-
-    if (res && res.length > 0) {
-      await supabase.from(StoryBlendSchemas.User).update({
-        fullName: data.user_metadata.full_name,
-        photoUser: data.user_metadata.avatar_url,
-        email: data.user_metadata.email,
-      }).eq('idUser', data.id);
-
-      return getResponse({
-        server: StatusHttp.Created,
-        message: "Usuario Modificado",
-      });
-    }
+    if(res) return getResponse({
+      server: StatusHttp.OK,
+      message: "Usuario ya existe",
+    });
 
     //si no hay entonces
     const user: UserCreateDto = {

@@ -3,7 +3,7 @@ import { StatusHttp, StoryBlendSchemas } from "@/lib/enums";
 import { supabase } from "@/lib/supabase";
 import { getResponse, getSession } from "@/lib/helpers";
 
-export const GET: APIRoute = async () => {
+export const GET: APIRoute = async ({cookies}) => {
   try {
     const user = await getSession();
     if (!user)
@@ -16,6 +16,7 @@ export const GET: APIRoute = async () => {
       .select("*")
       .eq("idUser", user.user.id)
       .single();
+
     if (error) return getResponse({ server: StatusHttp.BadRequest });
 
     return getResponse({ server: StatusHttp.OK, data: data });

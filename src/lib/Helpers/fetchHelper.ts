@@ -2,7 +2,7 @@ export const GetFetch = async (url: string) => {
   try {
     const data = await fetch(url);
     const json = await data.json();
-    console.log(`[${data.status}] ${url.split("/").pop()} ${data.statusText}`)
+    console.log(`[${data.status}] ${url.substring(url.indexOf("api"))} ${data.statusText}`)
     return json;
   } catch (error) {
     console.error(error);
