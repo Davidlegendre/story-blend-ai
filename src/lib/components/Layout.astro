@@ -1,14 +1,21 @@
 ---
-import Navigation from './Navigation.astro'
+import { getSession } from "auth-astro/server";
+import ChildReact from '@/lib/components/ChildReact.tsx'
+import { meData } from "../server/userHandler/me";
+import Navigation from "@/lib/components/Navigation.tsx";
+
 interface Props {
   title?: string;
   icon?: string;
   hideNav?: boolean;
 }
-const { title = "Story Blend AI", icon = "/logoStoryBlend.png",
-  hideNav = false
+const {
+  title = "Story Blend AI",
+  icon = "/logoStoryBlend.png",
+  hideNav = false,
 } = Astro.props;
-
+const session = await getSession(Astro.request);
+const user = await meData(session?.user?.email);
 ---
 
 <html lang="es">
@@ -20,93 +27,9 @@ const { title = "Story Blend AI", icon = "/logoStoryBlend.png",
     <title>{title}</title>
   </head>
   <body>
-    {hideNav ? '' : <Navigation></Navigation>}
-    <slot />
+    <ChildReact client:idle>
+      {hideNav ? "" : <Navigation usersession={user} client:idle/>}
+      <slot></slot>
+    </ChildReact>
   </body>
 </html>
-
-<style is:global>
-body{
-  margin: 0px;
-  padding: 0px;
-}
-p, h1{
-    font-family: 'Segoe UI Semibold';
-    margin: 0xp;
-    padding: 0px;
-}
-
-h1 {
-    margin: 0px;
-    padding: 0px;
-}
-.ms-depth-16 {
-    box-shadow: 0 6.4px 14.4px 0 rgba(0,0,0,.132),0 1.2px 3.6px 0 rgba(0,0,0,.108);
-}
-
-.ms-depth-4 {
-    box-shadow: 0 1.6px 3.6px 0 rgba(0,0,0,.132),0 .3px .9px 0 rgba(0,0,0,.108);
-}
-
-.ms-depth-8 {
-    box-shadow: 0 3.2px 7.2px 0 rgba(0,0,0,.132),0 .6px 1.8px 0 rgba(0,0,0,.108);
-}
-
-.ms-depth-64 {
-    box-shadow: 0 25.6px 57.6px 0 rgba(0,0,0,.22),0 4.8px 14.4px 0 rgba(0,0,0,.18);
-}
-button {
-  border: 0px;
-  background-color: white;
-  border-radius: 7px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  padding: 1px 15px;
-  cursor: pointer;
-  transition: cubic-bezier(0.785, 0.135, 0.15, 0.86) .2s;
-}
-button img {
-  width: 20px;
-}
-button p {
-  font-size: 0.8rem;
-}
-button:hover {
-  background-color: rgba(0,0,0,0.06);
-  transition: cubic-bezier(0.785, 0.135, 0.15, 0.86) .2s;
-  
-}
-a {
-    color: black;
-    text-decoration: none;
-}
-
-a {
-    border: 0px;
-    background-color: white;
-    border-radius: 7px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    padding: 5px 15px;
-    cursor: pointer;
-    transition: cubic-bezier(0.785, 0.135, 0.15, 0.86) .2s;
-  }
-  a img {
-    width: 20px;
-  }
-  a p {
-    font-size: 0.8rem;
-  }
-  a:hover {
-    background-color: rgba(0,0,0,0.06);
-    transition: cubic-bezier(0.785, 0.135, 0.15, 0.86) .2s;
-    
-  }
-  
-</style>
