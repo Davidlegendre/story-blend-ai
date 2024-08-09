@@ -31,5 +31,6 @@ const user = await meData(session?.user?.email);
       {hideNav ? "" : <Navigation usersession={user} client:idle/>}
       <slot></slot>
     </ChildReact>
+    
   </body>
 </html>
