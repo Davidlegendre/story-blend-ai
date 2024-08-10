@@ -1,7 +1,6 @@
 ---
 import { getSession } from "auth-astro/server";
 import ChildReact from '@/lib/components/ChildReact.tsx'
-import { meData } from "../server/userHandler/me";
 import Navigation from "@/lib/components/Navigation.tsx";
 
 interface Props {
@@ -15,10 +14,10 @@ const {
   hideNav = false,
 } = Astro.props;
 const session = await getSession(Astro.request);
-const user = await meData(session?.user?.email);
+const pathname = Astro.url.pathname
 ---
 
-<html lang="es">
+<html lang="es" class="dark dark:text-foreground dark:bg-background">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/png" href={icon} />
@@ -28,7 +27,7 @@ const user = await meData(session?.user?.email);
   </head>
   <body>
     <ChildReact client:idle>
-      {hideNav ? "" : <Navigation usersession={user} client:idle/>}
+      {hideNav ? "" : <Navigation pathname={pathname} usersession={session?.user} client:idle/>}
       <slot></slot>
     </ChildReact>
     

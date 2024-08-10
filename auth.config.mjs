@@ -1,6 +1,6 @@
 import { defineConfig } from "auth-astro";
 import Google from "@auth/core/providers/google";
-import { createUserHandler } from './src/lib/server/userHandler/create'
+import { createUserHandler } from './src/lib/Helpers/Handlers/createUser'
 
 export default defineConfig({
     providers: [

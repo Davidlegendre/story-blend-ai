@@ -5,7 +5,7 @@ export const StatusHttp = {
     },
     InternalServerException: {
         status: 500,
-        text: 'Internal Server'
+        text: 'Internal Server Exception'
     },
     BadRequest: {
         status: 400,

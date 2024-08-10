@@ -1,5 +1,5 @@
 export class ResponseModel<T> {
   server: { status: number; text: string };
-  message?: string;
+  statusText?: string;
   data?: T;  
 }

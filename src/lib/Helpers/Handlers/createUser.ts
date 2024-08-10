@@ -1,8 +1,9 @@
 import { StoryBlendSchemas } from "@/lib/enums";
-import type { UserCreateDto } from "@/lib/StoryBlendModels/user.create.dto";
+import type { UserCreateDto } from "@/lib/models/user.create.dto";
 import { supabase } from "@/lib/supabase";
 
 export const createUserHandler = async (usuario: { id: string, name: string, email: string, image: string }) => {
+  
     try {   
         //averiguo si existe un usuario ya con ese id
         const { data, error: err } = await supabase
