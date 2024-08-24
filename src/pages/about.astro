@@ -1,6 +1,14 @@
 ---
-import Layout from "@/lib/components/Layout.astro"
+import { Book } from "@/lib/components/Book";
+import Layout from "@/lib/components/Layout.astro";
 ---
+
 <Layout title="Story Blend AI - About">
-    <p>About</p>
+  <div class="bg-white p-7">
+    <Book
+      title="The user experience of the Frontend Cloud"
+      topColor="#f5a623"
+      bottomColor="#000000"
+    />
+  </div>
 </Layout>

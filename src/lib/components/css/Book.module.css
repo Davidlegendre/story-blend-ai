@@ -1,0 +1,180 @@
+.book{
+    width: 190px;
+    perspective: 1000px;
+    height: 290px;
+    position: relative;
+}
+
+.book:hover .content_book {
+    transform: rotateY(-20deg); /* Rota el libro en el eje Y al hacer hover */
+    
+  }
+  .book:hover .back_book{
+    transform: rotateY(-20deg);
+    left: 14px;
+  }
+
+  .book:hover .pages_book{
+    right: -22px;
+    transform: rotateY(70deg); 
+  }
+  
+
+.content_book::after, .back_book::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  position: absolute;
+  border-radius: 6px 4px 4px 6px;
+  top: 0;
+  box-shadow: inset 0px 0px 1.7px 1.5px rgba(255, 255, 255, 0.2);
+}
+
+.content_book{
+    overflow: hidden;
+    width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d; /* Permite la transformación 3D de los hijos */ 
+  border-radius: 6px 4px 4px 6px;
+  background-color: rgb(252, 252, 252);
+  perspective: 1000px;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.02), 0 4px 8px -4px rgba(0, 0, 0, 0.1),
+    0 16px 24px -8px rgba(0, 0, 0, 0.03);
+  transition: all 0.3s ease;
+}
+
+.content_book,
+.portada_book {
+  height: 100%;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.02), 0 4px 8px -4px rgba(0, 0, 0, 0.1);
+}
+
+.portada_book {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: white; /* Color de la portada */
+    transform: rotateY(0deg); /* Mantén la portada al frente */
+    backface-visibility: hidden;
+    border-radius: 5px;
+  }
+
+.book_lomo1 {
+    overflow: hidden;
+  position: relative;
+  width: 8.2%;
+  height: 100%;
+  left: 1px;
+  top: 1px;
+  position: absolute;
+  background-color: transparent;
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: inset -2px -1px 9px 0px rgba(0, 0, 0, 0.1);
+}
+
+.book_lomo2 {
+  width: 8.2%;
+  height: 100%;
+  left: 0px;
+  top: 0px;
+  bottom: 1px;
+  position: absolute;
+  background-color: transparent;
+  border-right: 1.9px solid rgba(0, 0, 0, 0.12);
+  box-shadow: inset -2px -1px 8px 0px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.book_lomo1::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 0.7px;
+  background-color: rgba(255, 255, 255, 0.5);
+  width: 2px;
+  height: 99%;
+  filter: blur(1.7px);
+}
+
+.top_book {
+  background-color: hsla(36, 90%, 62%, 1);
+  height: 50%;
+  
+}
+
+.top_book img{
+    height: 100%;
+    object-fit: cover;
+}
+
+.title_book {
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+  background-color: white;
+  height: 50%;
+  padding: 5%;
+  padding-left: 16%;
+  gap: 15px;
+  container-type: inline-size;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+}
+
+.title_book_hidden{
+    display: none;
+}
+
+.expand_part{
+    height: 100%;
+    max-height: none;
+}
+
+
+.title_book > p {
+    color: black;
+    font-weight: bolder;
+    font-size: 10.5cqw;
+    line-height: 1.25em;
+    letter-spacing: -0.02em;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* Número máximo de líneas a mostrar */
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+  }
+
+.back_book {
+    position: absolute;
+    width: 98%;
+    left: 3px;
+    height: 92%;
+    top: 11px;
+    background-color: rgb(228, 228, 228); /* Color de las páginas */
+    transform: rotateY(10deg); /* Mantén las páginas al frente */
+    border-radius: 6px 4px 4px 6px;
+    backface-visibility: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .pages_book {
+    position: absolute;
+    width: 48px;
+    height: 93%;
+    top: 10px;
+    right: -19px;
+    background-color: #ffffff; /* Color de las páginas */
+    transform: rotateY(80deg); /* Mantén las páginas al frente */
+    box-shadow: inset 27px -4px 10px -1px rgba(0, 0, 0, 0.1);
+    backface-visibility: hidden;
+    transition: all 0.3s ease;
+  }
+  
+
+.vercel_icon {
+  rotate: 180deg;
+}
