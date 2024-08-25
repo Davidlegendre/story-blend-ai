@@ -1,23 +1,44 @@
 ---
 import { Book, typeBook } from "@/lib/components/Book";
 import Layout from "@/lib/components/Layout.astro";
+import {type IOpenLibrary} from '@/lib/interfaces/OpenLibrary.interface'
+const data = await fetch("https://openlibrary.org/search.json?title=The+Great+Gatsby")
+const json: IOpenLibrary = await data.json()
 ---
 
 <Layout title="Story Blend AI - About">
-  <div class="p-7 flex flex-wrap gap-6">
-    <Book text="Assasins Creed The Game: Tomo IV" type={typeBook.simple}
-    urlLogo="https://img.icons8.com/?size=100&id=3I8L6E9zvI5A&format=png&color=000000" />
+  {/*<div class="p-7 flex flex-wrap gap-6">
     <Book
-      text="asdasdad"
+      text="Tesis de Grado"
+      subtitle="Diseño de una herramienta tecnológica para mejorar la comprensión lectora en estudiantes: estudio en el grado tercero de una Institución Educativa en México, D.F."
+      authors="Legendre Albites David Fernando & Renquifo Mercado Francois Carlos"
+      type={typeBook.ambosMinimal}
+      urlLogo="https://mentor.pe/wp-content/uploads/2023/11/UCV.png"
+    />
+    <Book
+      text="Mas Alla de las Estrellas"
+      urlImage="https://static.vecteezy.com/system/resources/previews/022/429/680/non_2x/abstract-colorful-low-poly-geometric-shapes-background-png.png"
+    />
+    <Book
+      text="Creatividad"
+      subtitle="¿Por qué no se me ocurrió?"
+      urlImage="https://i.pinimg.com/originals/4c/96/ab/4c96ab6ff02ef51c98f2e47d08c3c815.jpg"
       type={typeBook.portada}
-      urlImage="https://edit.org/editor/json/2019/10/02/6/a/6a4288e8e35db864cfb8fa20662e07a1_edit.org.jpg"
-     
     />
-    <Book text="lorem" 
-    urlImage="https://i.pinimg.com/originals/4c/96/ab/4c96ab6ff02ef51c98f2e47d08c3c815.jpg"
-    type={typeBook.portada}
-    />
-    <Book text="asodadppn" />
-    <Book text="ansndans" />
+    <Book subtitle="" />
+    <Book />
+  </div>*/}
+  <div class="p-7 flex flex-wrap gap-6">
+    {
+      json.docs.map(e => {
+        return <Book
+        title={e.title}
+        subtitle={e.subtitle}
+        type={typeBook.ambosMinimal}
+        authors={e.author_name?.join(" & ")}
+        urlLogo="https://mentor.pe/wp-content/uploads/2023/11/UCV.png"
+        ></Book>
+      })
+    }
   </div>
 </Layout>
