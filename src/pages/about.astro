@@ -1,14 +1,23 @@
 ---
-import { Book } from "@/lib/components/Book";
+import { Book, typeBook } from "@/lib/components/Book";
 import Layout from "@/lib/components/Layout.astro";
 ---
 
 <Layout title="Story Blend AI - About">
-  <div class="bg-white p-7">
+  <div class="p-7 flex flex-wrap gap-6">
+    <Book text="Assasins Creed The Game: Tomo IV" type={typeBook.simple}
+    urlLogo="https://img.icons8.com/?size=100&id=3I8L6E9zvI5A&format=png&color=000000" />
     <Book
-      title="The user experience of the Frontend Cloud"
-      topColor="#f5a623"
-      bottomColor="#000000"
+      text="asdasdad"
+      type={typeBook.portada}
+      urlImage="https://edit.org/editor/json/2019/10/02/6/a/6a4288e8e35db864cfb8fa20662e07a1_edit.org.jpg"
+     
     />
+    <Book text="lorem" 
+    urlImage="https://i.pinimg.com/originals/4c/96/ab/4c96ab6ff02ef51c98f2e47d08c3c815.jpg"
+    type={typeBook.portada}
+    />
+    <Book text="asodadppn" />
+    <Book text="ansndans" />
   </div>
 </Layout>
