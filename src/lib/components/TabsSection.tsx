@@ -39,6 +39,7 @@ ${codeContent}`;
                 style={{
                   background: "black",
                   padding: "10px",
+                  maxWidth:'577px',
                   width: "100%",
                   borderRadius: "7px",
                   overflowX: "auto",

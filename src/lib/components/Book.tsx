@@ -50,7 +50,7 @@ export function Book({
   ];
 
   const stylePortadaTopBook = type !== typeBook.simple && {
-    backgroundColor: color,
+    background: color,
     height: typeHeightTop.find((e) => e.type === type).height,
     "max-height": typeHeightTop.find((e) => e.type === type)["max-height"],
   };

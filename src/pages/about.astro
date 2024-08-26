@@ -34,7 +34,7 @@ const codeStrings = [
   subtitle="subtitulo [opcional]" 
   authors="autores [opcional]"
   type={typeBook.ambos} //ambos es default
-  color="darkslateblue" //[opcional, default: rgb(255, 159, 15)]
+  color="linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%)" //[opcional, default: rgb(255, 159, 15)]
   urlLogo="local o url [opcional]"
   urlImage"local o url [opcional]"
   logoWidth={number} //[opcional, default: 22]}
@@ -85,7 +85,14 @@ const codeStrings = [
             subtitle="subtitulo"
             authors="autores"
             type={typeBook.portada}
-            urlImage="https://edit.org/editor/json/2019/10/02/6/a/6a4288e8e35db864cfb8fa20662e07a1_edit.org.jpg"
+            urlImage="https://images.cdn2.buscalibre.com/fit-in/360x360/7b/e4/7be45faa9dd2509825f348d908f7105b.jpg"
+          />
+          <Book
+            title="Titulo para el tooltip"
+            subtitle="subtitulo"
+            authors="autores"
+            type={typeBook.portada}
+            urlImage="https://i.pinimg.com/originals/d8/7b/50/d87b50c506eec25da78b8dc2f4eca570.jpg"
           />
         </TabsSection>
       </div>
@@ -111,6 +118,15 @@ const codeStrings = [
             urlLogo="https://img.icons8.com/?size=100&id=MWiBjkuHeMVq&format=png&color=000000"
             logoWidth={38}
           />
+          <Book
+          title="Tesis de Grado"
+          subtitle="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil exercitationem incidunt consequuntur aliquid"
+          authors="Lorem ipsum dolor sit"
+          type={typeBook.ambosMinimal}
+          color="linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%)"
+          urlLogo="https://img.icons8.com/?size=100&id=MWiBjkuHeMVq&format=png&color=000000"
+          logoWidth={38}
+        />
         </TabsSection>
       </div>
       <div class="max-w-[max-content] w-[100%]">
@@ -122,6 +138,7 @@ const codeStrings = [
             title="Titulo"
             subtitle="Subtitulo"
             authors="Lorem ipsum dolor sit & Totam quasi harum temporibus"
+            color="linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%)"
             type={typeBook.ambos}
             urlLogo="https://img.icons8.com/?size=100&id=MWiBjkuHeMVq&format=png&color=000000"
             
