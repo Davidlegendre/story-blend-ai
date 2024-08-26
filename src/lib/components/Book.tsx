@@ -15,6 +15,7 @@ interface Props {
   color?: string;
   urlImage?: string;
   urlLogo?: string;
+  logoWidth?: number;
 }
 
 export function Book({
@@ -25,6 +26,7 @@ export function Book({
   color = undefined,
   urlImage = undefined,
   urlLogo = undefined,
+  logoWidth = 22
 }: Props) {
   const tooltip = `${title ?? ""}${subtitle ? ": " : ""}${subtitle ?? ""}${
     authors ? " - " : ""
@@ -47,7 +49,7 @@ export function Book({
     },
   ];
 
-  const stylePortadaTopBook = {
+  const stylePortadaTopBook = type !== typeBook.simple && {
     backgroundColor: color,
     height: typeHeightTop.find((e) => e.type === type).height,
     "max-height": typeHeightTop.find((e) => e.type === type)["max-height"],
@@ -80,7 +82,7 @@ export function Book({
                       {urlLogo && (
                         <img
                           className={styles.vercel_icon}
-                          width={22}
+                          width={logoWidth}
                           src={urlLogo}
                           alt="logo"
                         ></img>

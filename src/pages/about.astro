@@ -1,44 +1,147 @@
 ---
 import { Book, typeBook } from "@/lib/components/Book";
 import Layout from "@/lib/components/Layout.astro";
-import {type IOpenLibrary} from '@/lib/interfaces/OpenLibrary.interface'
-const data = await fetch("https://openlibrary.org/search.json?title=The+Great+Gatsby")
-const json: IOpenLibrary = await data.json()
+import Buttons from '@/lib/components/Buttons'
+import TabsSection from "@/lib/components/TabsSection";
+
+const codeStrings = [
+  `<Book 
+  title="Titulo [opcional, default: 'Titulo']" 
+  subtitle="subtitulo [opcional]" 
+  authors="autores [opcional]"
+  type={typeBook.simple}
+  urlLogo="local o url [opcional]"
+  logoWidth={number} //[opcional, default: 22]
+/>`,
+  `<Book
+  title="Titulo [opcional, default: 'Titulo']" 
+  subtitle="subtitulo [opcional]" 
+  authors="autores [opcional]"
+  type={typeBook.portada}
+  urlImage="local o url [Portada, Opcional]"
+/>`,
+  `<Book
+  title="Titulo [opcional, default: 'Titulo']" 
+  subtitle="subtitulo [opcional]" 
+  authors="autores [opcional]"
+  type={typeBook.ambosMinimal}
+  color="darkslateblue" //[opcional, default: rgb(255, 159, 15)]
+  urlLogo="local o url [opcional]"
+  logoWidth={number} //[opcional, default: 22]}
+/>`,
+`<Book
+  title="Titulo [opcional, default: 'Titulo']" 
+  subtitle="subtitulo [opcional]" 
+  authors="autores [opcional]"
+  type={typeBook.ambos} //ambos es default
+  color="darkslateblue" //[opcional, default: rgb(255, 159, 15)]
+  urlLogo="local o url [opcional]"
+  urlImage"local o url [opcional]"
+  logoWidth={number} //[opcional, default: 22]}
+/>`,
+];
 ---
 
 <Layout title="Story Blend AI - About">
-  {/*<div class="p-7 flex flex-wrap gap-6">
-    <Book
-      text="Tesis de Grado"
-      subtitle="Diseño de una herramienta tecnológica para mejorar la comprensión lectora en estudiantes: estudio en el grado tercero de una Institución Educativa en México, D.F."
-      authors="Legendre Albites David Fernando & Renquifo Mercado Francois Carlos"
-      type={typeBook.ambosMinimal}
-      urlLogo="https://mentor.pe/wp-content/uploads/2023/11/UCV.png"
-    />
-    <Book
-      text="Mas Alla de las Estrellas"
-      urlImage="https://static.vecteezy.com/system/resources/previews/022/429/680/non_2x/abstract-colorful-low-poly-geometric-shapes-background-png.png"
-    />
-    <Book
-      text="Creatividad"
-      subtitle="¿Por qué no se me ocurrió?"
-      urlImage="https://i.pinimg.com/originals/4c/96/ab/4c96ab6ff02ef51c98f2e47d08c3c815.jpg"
-      type={typeBook.portada}
-    />
-    <Book subtitle="" />
-    <Book />
-  </div>*/}
-  <div class="p-7 flex flex-wrap gap-6">
-    {
-      json.docs.map(e => {
-        return <Book
-        title={e.title}
-        subtitle={e.subtitle}
-        type={typeBook.ambosMinimal}
-        authors={e.author_name?.join(" & ")}
-        urlLogo="https://mentor.pe/wp-content/uploads/2023/11/UCV.png"
-        ></Book>
-      })
-    }
+  <div class="p-7 flex flex-col gap-6">
+    <div class="flex items-center w-full md:justify-center"><Buttons client:idle></Buttons></div>
+    <div class="flex flex-wrap justify-center gap-6">
+      <div class="max-w-[max-content] w-[100%]">
+        <h1 class="p-3 pb-6 bg-content2 rounded-t-md mb-[-12px] border-b-0 w-full">
+          Book Type Simple
+        </h1>
+        <TabsSection codeContent={codeStrings[0]} client:idle>
+          <Book
+            title="Ejemplo Book"
+            subtitle="con subtitulo mas logo"
+            authors="autores"
+            type={typeBook.simple}
+            logoWidth={32}
+            urlLogo="https://img.icons8.com/?size=100&id=MWiBjkuHeMVq&format=png&color=000000"
+          />
+          <Book
+            title="Ejemplo Book"
+            type={typeBook.simple}
+            urlLogo="https://img.icons8.com/?size=100&id=MWiBjkuHeMVq&format=png&color=000000"
+            subtitle="este subtitulo es muy largo: Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum alias nobis ipsam quod sapiente quibusdam voluptatibus numquam neque iusto corporis optio voluptate cumque nihil, recusandae tempore incidunt omnis, natus accusantium."
+          />
+          <Book title="Ejemplo Book" type={typeBook.simple} />
+        </TabsSection>
+      </div>
+      <div class="max-w-[max-content] w-[100%] float-right">
+        <h1 class="p-3 pb-6 bg-content2 rounded-t-md mb-[-12px] border-b-0">
+          Book Type Portada
+        </h1>
+        <TabsSection codeContent={codeStrings[1]} client:idle>
+          <Book
+            title="Titulo para el tooltip"
+            subtitle="subtitulo"
+            authors="autores"
+            type={typeBook.portada}
+            urlImage="https://i.pinimg.com/originals/4c/96/ab/4c96ab6ff02ef51c98f2e47d08c3c815.jpg"
+          />
+          <Book
+            title="Titulo para el tooltip"
+            subtitle="subtitulo"
+            authors="autores"
+            type={typeBook.portada}
+            urlImage="https://edit.org/editor/json/2019/10/02/6/a/6a4288e8e35db864cfb8fa20662e07a1_edit.org.jpg"
+          />
+        </TabsSection>
+      </div>
+      <div class="max-w-[max-content] w-[100%]">
+        <h1 class="p-3 pb-6 bg-content2 rounded-t-md mb-[-12px] border-b-0">
+          Book Type ambosMinimal
+        </h1>
+        <TabsSection codeContent={codeStrings[2]} client:idle>
+          <Book
+            title="Tesis de Grado"
+            subtitle="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil exercitationem incidunt consequuntur aliquid aspernatur ipsum corporis perspiciatis saepe voluptate doloremque autem, facere dicta possimus. Totam quasi harum temporibus quam. Quos?"
+            authors="Lorem ipsum dolor sit & Totam quasi harum temporibus"
+            type={typeBook.ambosMinimal}
+            urlLogo="https://img.icons8.com/?size=100&id=MWiBjkuHeMVq&format=png&color=000000"
+            logoWidth={38}
+          />
+          <Book
+            title="Tesis de Grado"
+            subtitle="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil exercitationem incidunt consequuntur aliquid aspernatur ipsum corporis perspiciatis saepe voluptate doloremque autem, facere dicta possimus. Totam quasi harum temporibus quam. Quos?"
+            authors="Lorem ipsum dolor sit & Totam quasi harum temporibus"
+            type={typeBook.ambosMinimal}
+            color="darkslateblue"
+            urlLogo="https://img.icons8.com/?size=100&id=MWiBjkuHeMVq&format=png&color=000000"
+            logoWidth={38}
+          />
+        </TabsSection>
+      </div>
+      <div class="max-w-[max-content] w-[100%]">
+        <h1 class="p-3 pb-6 bg-content2 rounded-t-md mb-[-12px] border-b-0">
+          Book Type ambos
+        </h1>
+        <TabsSection codeContent={codeStrings[3]} client:idle>
+          <Book
+            title="Titulo"
+            subtitle="Subtitulo"
+            authors="Lorem ipsum dolor sit & Totam quasi harum temporibus"
+            type={typeBook.ambos}
+            urlLogo="https://img.icons8.com/?size=100&id=MWiBjkuHeMVq&format=png&color=000000"
+            
+          />
+          <Book
+            title="Mas Alla de las Estrellas"
+            subtitle="puedes añadir alguna imagen delante del color"
+            urlImage="https://static.vecteezy.com/system/resources/previews/022/429/680/non_2x/abstract-colorful-low-poly-geometric-shapes-background-png.png"
+          />
+          <Book
+            title="Tesis de Grado"
+            subtitle="Si el subtitulo es grande solo lo empujara arriba el top"
+            authors="Lorem ipsum dolor sit & Totam quasi harum temporibus"
+            type={typeBook.ambos}
+            color="darkslateblue"
+            urlLogo="https://img.icons8.com/?size=100&id=MWiBjkuHeMVq&format=png&color=000000"
+            logoWidth={38}
+          />
+        </TabsSection>
+      </div>
+    </div>
   </div>
 </Layout>
