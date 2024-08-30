@@ -1,4 +1,4 @@
-import React, { useContext, type ServerContext } from "react";
+
 import {
   Navbar,
   NavbarBrand,
@@ -13,9 +13,10 @@ import User from "./User";
 import Menu from "./Menu";
 import type { IMenu } from "@/lib/interfaces/IMenu";
 import type { User as u } from "@auth/core/types";
+import { useState } from "react";
 
 export default function Navigation({ usersession, pathname }: { usersession: u, pathname: string}) {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   
   const menus : IMenu[] = [

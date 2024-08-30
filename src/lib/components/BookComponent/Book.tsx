@@ -1,4 +1,4 @@
-import styles from "./css/Book.module.css";
+import styles from "./Book.module.css";
 
 export enum typeBook {
   simple = "simple",

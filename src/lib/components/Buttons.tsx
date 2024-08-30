@@ -1,4 +1,4 @@
-import { Button, ButtonGroup, Link } from "@nextui-org/react";
+import { Link } from "@nextui-org/react";
 
 export default function Buttons() {
   return (
