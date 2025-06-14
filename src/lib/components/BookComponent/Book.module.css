@@ -25,7 +25,7 @@
   --text-book-color: white;
 }
 
-@media (prefers-color-scheme: ligth) {
+@media (prefers-color-scheme: light) {
   .theme {
     --tooltip-bg: rgba(0, 0, 0, 0.75);
     --book-color: #f8f8f8;
