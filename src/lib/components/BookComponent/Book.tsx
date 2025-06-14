@@ -92,18 +92,20 @@ export function Book({
   };
 
   function BookImage() {
-    if (!urlImage || !showTopImage) return null;
+    if (!showTopImage) return null;
 
-    return (
-      <div className={styles.top_book} style={styleTopImage}>
+  return (
+    <div className={styles.top_book} style={styleTopImage}>
+      {urlImage && (
         <img
           src={urlImage}
           alt="portada-book"
           style={computedImageStyles}
           data-testid="book-image"
         />
-      </div>
-    );
+      )}
+    </div>
+  );
   }
 
   function BookTextSection() {
