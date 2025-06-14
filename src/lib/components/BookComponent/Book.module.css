@@ -9,6 +9,7 @@
 }
 
 .theme {
+  --tooltip-bg: rgba(0, 0, 0, 0.85);
   --book-color: #1f1f1f;
   --back-book-color: #424242;
   --lomo-book-color: linear-gradient(
@@ -24,8 +25,9 @@
   --text-book-color: white;
 }
 
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: dark) {
   .theme {
+    --tooltip-bg: rgba(0, 0, 0, 0.75);
     --book-color: #f8f8f8;
     --back-book-color: #ebebeb;
     --lomo-book-color: linear-gradient(
@@ -215,4 +217,43 @@
   opacity: 0;
   transition: all 0.1s ease;
   backface-visibility: hidden;
+}
+
+.book[data-tooltip] {
+  position: relative;
+}
+
+/* Tooltip customizado */
+.book[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+
+  /* top: 100%; */
+  bottom: 0;
+  left: 53%;
+  transform: translateX(-50%) translateY(8px); /* Se mueve hacia abajo visualmente */
+
+  background: var(--tooltip-bg, rgba(0, 0, 0, 0.85));
+  color: white;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 0.65rem;
+  line-height: 1.2;
+  text-align: center;
+
+  max-width: 80%;
+  width: max-content;
+  word-break: break-word;
+  white-space: normal;
+
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 20;
+}
+
+/* Show on hover */
+.book[data-tooltip]:hover::after {
+  opacity: 1;
 }
