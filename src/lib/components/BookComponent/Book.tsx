@@ -33,10 +33,15 @@ const getTooltip = (
   title?: string,
   subtitle?: string,
   authors?: string
-): string =>
-  [title, subtitle && `: ${subtitle}`, authors && ` - ${authors}`]
-    .filter(Boolean)
-    .join("");
+): string => {
+  const parts: string[] = [];
+
+  if (title) parts.push(title);
+  if (subtitle) parts.push(subtitle);
+  if (authors) parts.push(`by ${authors}`);
+
+  return parts.join(" — ");
+};
 
 const getImageObjectFit = (
   pos: ImagePosition
@@ -94,18 +99,18 @@ export function Book({
   function BookImage() {
     if (!showTopImage) return null;
 
-  return (
-    <div className={styles.top_book} style={styleTopImage}>
-      {urlImage && (
-        <img
-          src={urlImage}
-          alt="portada-book"
-          style={computedImageStyles}
-          data-testid="book-image"
-        />
-      )}
-    </div>
-  );
+    return (
+      <div className={styles.top_book} style={styleTopImage}>
+        {urlImage && (
+          <img
+            src={urlImage}
+            alt="portada-book"
+            style={computedImageStyles}
+            data-testid="book-image"
+          />
+        )}
+      </div>
+    );
   }
 
   function BookTextSection() {
@@ -140,8 +145,9 @@ export function Book({
     <div className={styles.theme}>
       <div
         className={styles.book}
-        title={getTooltip(title, subtitle, authors)}
+        // title={getTooltip(title, subtitle, authors)}
         role="img"
+        data-tooltip={getTooltip(title, subtitle, authors)}
         aria-label={getTooltip(title, subtitle, authors)}
         data-testid="book-component"
       >
